@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <com.styx.camera.CameraPreview
+        android:id="@+id/cameraPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+    </com.styx.camera.CameraPreview>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/black"
+            android:text="X"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cross"
+            android:layout_alignLeft="@+id/cross"
+            android:text="..."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/compassDirection"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="..."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <com.styx.widgets.CompassView
+            android:id="@+id/compassView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/compassDirection" >
+        </com.styx.widgets.CompassView>
+
+        <com.styx.MeasurementPreview
+            android:id="@+id/measuremenPreview"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" >
+        </com.styx.MeasurementPreview>
+
+        <TextView
+            android:id="@+id/corners"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/markCorner"
+            android:text=" corner(s) selected."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/cornersMarkedCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/corners"
+            android:textColor="@android:color/black"
+            android:layout_toLeftOf="@+id/corners"
+            android:text="0"/>
+
+        <Button
+            android:id="@+id/markCorner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Select Corner" />
+
+        <Button
+            android:id="@+id/resetCorners"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:text="Reset" />
+    </RelativeLayout>
+
+</FrameLayout>

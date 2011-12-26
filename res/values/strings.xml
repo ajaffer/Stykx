@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Select \'New Map\' to start from scratch, for existing ones select \'View Maps\'</string>
+    <string name="newmap">Create a new map</string>
+    <string name="maplog">View a log of maps created</string>
+    <string name="maplist">View a list of maps by address</string>
+    <string name="favmap">View a list of fav maps</string>
+    <string name="app_name">Mapouter</string>
+    <string name="calibrate">Place the back side of your phone completely against a wall, touch the Calibrate button.</string>
+</resources>

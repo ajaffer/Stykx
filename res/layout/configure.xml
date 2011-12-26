@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/calibrationHelpMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Enter your height"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/inches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/calibrationHelpMessage"
+        android:text="inches"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/configureStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/heightInches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/inches"
+        android:layout_alignBottom="@+id/inches"
+        android:layout_toLeftOf="@+id/inches"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/feed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/heightInches"
+        android:layout_alignBottom="@+id/heightInches"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/heightInches"
+        android:text="feet"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/heightFeet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/feed"
+        android:layout_alignBottom="@+id/feed"
+        android:layout_toLeftOf="@+id/feed"
+        android:text="0" />
+
+</RelativeLayout>
