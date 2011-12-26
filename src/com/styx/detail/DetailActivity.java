@@ -37,29 +37,16 @@ public class DetailActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		final TextView mapDetailStatus = (TextView) findViewById(R.id.detailsMessage);
-//		mapDetailStatus.setText("");
-		// Bundle extras = getIntent().getExtras();
-		// Room room = extras.getParcelable("room");
-
-		// Log.d("floor-plan", "room received:" + room.toString());
-
-
 		setContentView(R.layout.details);
-//		Preview measurementPreview = (Preview) findViewById(R.id.measurementPreview);
 		final DetailView detatilView = ((DetailView) findViewById(R.id.floorPlanView));;
-//		if(measurementPreview!=null){
 		Preview measurementPreview = (Preview) findViewById(R.id.measuremenPreview);
-			Room room = measurementPreview.getRoom();
-			detatilView.addRoom(room);
-//		}else{
-//			Log.e("detail", "could not find prev room");
-//		}
+		Room room = measurementPreview.getRoom();
+		detatilView.addRoom(room);
 
 		Button button = (Button) findViewById(R.id.saveToFile);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				saveRooms();
-//				mapDetailStatus.setText("Successfully saved to file.");
 			}
 		});
 

@@ -14,15 +14,10 @@ import com.styx.measurement.Room;
 
 public class DetailView extends View {
 
-	 private List<Room> rooms;
-	 private float cx, cy;
-	 private float boundingBoxWidth, boundingBoxHeight;
-	 private float dropAreaCx, dropAreaCy, dropAreaWidth, dropAreaHeight;
-
-//	public FloorPlanView(Context context, Room[] rooms) {
-//		super(context);
-//		this.rooms = rooms;
-//	}
+	private List<Room> rooms;
+	private float cx, cy;
+	private float boundingBoxWidth, boundingBoxHeight;
+	private float dropAreaCx, dropAreaCy, dropAreaWidth, dropAreaHeight;
 
 	public DetailView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -39,26 +34,17 @@ public class DetailView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
-//		setupBounds(canvas);
-//		drawBoundingBox(canvas);
-//		drawDropAreaBoundingBox(canvas);
-
 		for(Room room : rooms){
 			int cx = canvas.getWidth()/2;
 			int cy = canvas.getHeight()/4;
 
 			int scaleFactor = canvas.getHeight()/4;
 
-//			int actualMaxRadius = room.getMaxRadius();
-//			if(actualMaxRadius>0)
-//				scaleFactor = canvas.getHeight()/4/actualMaxRadius;
-
 			Paint paint = new Paint();
 			paint.setColor(Color.BLUE);
 			canvas.drawCircle(cx, cy, canvas.getHeight()/4, paint);
 
 			room.draw(canvas, cx, cy, scaleFactor);
-//			room.draw(canvas);
 		}
 	}
 

@@ -48,11 +48,6 @@ public class MainActivity extends TabActivity {
 
 		// Do the same for the other tabs
 		intent = new Intent().setClass(this, DetailActivity.class);
-		// Log.d("main", "have " + Preview.orientations.size() +
-		// " measurements");
-		// intent.putExtra("room", (Parcelable)new
-		// Room(400,400,300,Preview.orientations.toArray(new
-		// Orientation[0])));
 
 		spec = tabHost
 				.newTabSpec("detail")
@@ -61,34 +56,11 @@ public class MainActivity extends TabActivity {
 				.setContent(intent);
 		tabHost.addTab(spec);
 
-//		intent = new Intent().setClass(this, Compas.class);
-//		spec = tabHost
-//				.newTabSpec("list")
-//				.setIndicator("Floor Plan List",
-//						res.getDrawable(R.drawable.ic_tab_map_list))
-//				.setContent(intent);
-//		tabHost.addTab(spec);
-
-//		intent = new Intent().setClass(this, CalibrateActivity.class);
-//		spec = tabHost
-//				.newTabSpec("calibrate")
-//				.setIndicator("Calibrate",
-//						res.getDrawable(R.drawable.ic_tab_map_log))
-//				.setContent(intent);
-//		tabHost.addTab(spec);
-
-		// intent = new Intent().setClass(this, FavMapActivity.class);
-		// spec = tabHost.newTabSpec("favs").setIndicator("Favs",
-		// res.getDrawable(R.drawable.ic_tab_fav_map))
-		// .setContent(intent);
-		// tabHost.addTab(spec);
-
 		if (Config.getHeight() == 0 || Config.getUprightAngle() == 0)
 			tabHost.setCurrentTab(3);
 		else
 			tabHost.setCurrentTab(0);
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

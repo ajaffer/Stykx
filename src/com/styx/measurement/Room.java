@@ -16,7 +16,6 @@ import com.styx.lib.Util;
 
 public class Room implements Serializable, Parcelable {
 	private static final long serialVersionUID = -6787794622520280846L;
-	// public int markedCorners = 0;
 	private int maxRadius;
 	private int cx, cy;
 	private float zoomHeight;
@@ -31,7 +30,6 @@ public class Room implements Serializable, Parcelable {
 
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -62,10 +60,6 @@ public class Room implements Serializable, Parcelable {
 		cy = in.readInt();
 	}
 
-	// public Room(float[] points) {
-	// this.points = points;
-	// }
-
 	public Room(int cx, int cy, int maxRadius, Orientation orientations[]) {
 		this.maxRadius = maxRadius;
 		this.cx = cx;
@@ -74,10 +68,6 @@ public class Room implements Serializable, Parcelable {
 		this.setZoom(Config.getHeight());
 		this.points = getPoints(this.orientations, cx, cy, maxRadius);
 	}
-
-	// public void addOrientation(Orientation o) {
-	// this.orientations[markedCorners++] = o;
-	// }
 
 	public void draw(Canvas canvas, int cx, int cy, int maxRadius) {
 		this.cx = cx;
@@ -126,19 +116,8 @@ public class Room implements Serializable, Parcelable {
 
 	private float[] getPoints(Orientation orientations[], int cx, int cy,
 			int maxRadius) {
-		// return rescale(toPoints(toCorners(orientations, cx, cy)), cx, cy,
-		// maxRadius);
-		// return rescale(toPoints(toCorners(orientations, cx, cy)), cx, cy,
-		// maxRadius);
-		// float points[] = toPoints(toCorners(orientations, cx, cy,
-		// maxRadius));
 		corners = toCorners(orientations, cx, cy, maxRadius);
-		//recenter(corners);
 		float points[] = toPoints(corners);
-//		float points[] = recenter(toPoints(corners), cx, cy);
-
-		// calcConvexHull(points);
-
 		return points;
 	}
 
@@ -147,22 +126,21 @@ public class Room implements Serializable, Parcelable {
 				maxx, miny, minx, miny, minx, miny, minx, maxy };
 	}
 
-	public void recenter(List<Corner> corners){
+	private float prev_xdiff, prev_ydiff;
+
+	public void recenter(){
 		calcConvexHull();
 		float azimuth, pitch;
 
-		azimuth = (float) Math.atan((cx - (minx + (maxx - minx) / 2)) / zoomHeight);
-		pitch = (float) Math.atan((cy - (miny + (maxy - miny) / 2)) / zoomHeight);
-		translate(azimuth, pitch, corners);
+		float xdiff = (cx - (minx + (maxx - minx) / 2));
+		float ydiff = (cy + (miny + (maxy - miny) / 2));
+
+		if (prev_xdiff - xdiff > .01 && prev_ydiff - ydiff > .01) {
+			azimuth = (float) Math.atan(xdiff / zoomHeight);
+			pitch = (float) Math.atan(ydiff / zoomHeight);
+			translate(azimuth, pitch, corners);
+		}
 	}
-
-
-//	public float[] recenter(float[] points, int cx, int cy) {
-//		calcConvexHull();
-//		points = traslate(points, cx - (minx + (maxx - minx) / 2), cy
-//				- (miny + (maxy - miny) / 2));
-//		return points;
-//	}
 
 	public void translate(float azimuth, float pitch, List<Corner> corners) {
 		for(Corner corner : corners) {
@@ -179,33 +157,13 @@ public class Room implements Serializable, Parcelable {
 		return points;
 	}
 
-//	public float[] rescale() {
-////		points = translateCenterToOrigin(points, cx, cy);
-//
-//		float xScale = (cx + maxRadius) / maxx;
-//		float yScale = (cy + maxRadius) / maxy;
-//		for (int i = 0; i < points.length; i++) {
-//			if (i % 2 == 0) {
-//				points[i] *= xScale;
-//			} else {
-//				points[i] *= yScale;
-//			}
-//		}
-//
-//		points = recenter(points, cx, cy);
-//		return points;
-//	}
-
 	private float[] traslate(float[] points, float transX, float transY) {
-		// Log.d("translate", "transX:"+transX+",transY:"+transY);
-		// Log.d("Room-pre-translation", Util.toString(points));
 		for (int i = 0; i < points.length; i++) {
 			if (i % 2 == 0)
 				points[i] += transX;
 			else if (i % 2 != 0)
 				points[i] += transY;
 		}
-		// Log.d("Room-post-translation", Util.toString(points));
 		return points;
 	}
 
@@ -246,34 +204,6 @@ public class Room implements Serializable, Parcelable {
 		maxy = bottom.y;
 	}
 
-//	private void calcConvexHull(float[] points) {
-//		if (points == null) {
-//			return;
-//		}
-//		if (points.length < 2) {
-//			Log.i("room", "points less than 2:" + points.length);
-//			return;
-//		}
-//		minx = points[0];
-//		maxx = points[0];
-//		miny = points[1];
-//		maxy = points[1];
-//
-//		for (int i = 0; i < points.length; i++) {
-//			if (i % 2 == 0) {
-//				if (points[i] < minx)
-//					minx = points[i];
-//				if (points[i] > maxx)
-//					maxx = points[i];
-//			} else {
-//				if (points[i] < miny)
-//					miny = points[i];
-//				if (points[i] > maxy)
-//					maxy = points[i];
-//			}
-//		}
-//	}
-
 	public String toString() {
 		if (this.points == null) {
 			Log.i("room-tostring", "points are null");
@@ -293,7 +223,6 @@ public class Room implements Serializable, Parcelable {
 	private float[] toPoints(List<Corner> corners) {
 		if (corners.size() == 0)
 			return new float[] { 0.0f, 0.0f, 0.0f, 0.0f };
-		// float points[] = new float[4*corners.size()];
 		List<Float> points = new ArrayList<Float>(4 * corners.size());
 		Corner prevCorner = corners.get(0);
 		for (int i = 1; i < corners.size(); i++) {
@@ -312,14 +241,7 @@ public class Room implements Serializable, Parcelable {
 		points.add((float) corners.get(0).x);
 		points.add((float) corners.get(0).y);
 
-		// Log.d("corners", "corners len: " + corners.size() + ", "
-		// + Util.toString(corners));
-		// Log.d("points", "points len: " + points.size() + ", points: "
-		// + Util.toString(points));
 		float[] f = Util.toArray(points);
-		// Log.d("points", "points len: " + f.length + ", points: " +
-		// Util.toString(f));
-
 		return f;
 	}
 
@@ -334,12 +256,6 @@ public class Room implements Serializable, Parcelable {
 		return corners;
 	}
 
-	// public int getMaxRadius() {
-	// calcConvexHull(this.points);
-	// return (int) Math.max((maxx - cx),
-	// Math.max(cx - minx, Math.max(maxy - cy, cy - miny)));
-	// }
-
 	public void drawScales(Canvas canvas) {
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
@@ -347,10 +263,6 @@ public class Room implements Serializable, Parcelable {
 		int unit = maxRadius * 2 / divisions;
 		int originX = cx - maxRadius;
 		int originY = cy + maxRadius;
-
-//		Log.i("Room", "getScaleHorizon: " +  Util.getScaleHorizon(zoomHeight) / divisions);
-//		Log.i("Room", "descale: " +  Util.descale(Util.getScaleHorizon(zoomHeight) / divisions, maxRadius));
-//		Log.i("Room", "cmToFeetAndInches" +  Util.cmToFeetAndInches((int) Util.descale(Util.getScaleHorizon(zoomHeight) / divisions, maxRadius)));
 
 		for (int i = 0; i <= divisions; i++) {
 			String distance = Util.cmToFeetAndInches((int) (i * Util.getScaleHorizon(zoomHeight) / divisions));

@@ -41,7 +41,8 @@ public class Preview extends View {
 
 		drawBoundingBox(canvas, maxRadius, cx, cy);
 		room.draw(canvas);
-//		room.drawConvexHull(canvas);
+		room.drawConvexHull(canvas);
+		room.recenter();
 		room.drawScales(canvas);
 	}
 
