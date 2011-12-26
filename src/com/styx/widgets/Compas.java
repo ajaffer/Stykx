@@ -8,8 +8,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.styx.Orientation;
 import com.styx.R;
+import com.styx.measurement.Orientation;
 
 public class Compas extends Activity implements SensorEventListener {
 	/** Called when the activity is first created. */

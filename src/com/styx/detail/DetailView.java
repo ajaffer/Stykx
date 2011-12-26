@@ -10,7 +10,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.styx.Room;
+import com.styx.measurement.Room;
 
 public class DetailView extends View {
 

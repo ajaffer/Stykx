@@ -20,10 +20,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.styx.MeasurementPreview;
-import com.styx.Orientation;
 import com.styx.R;
-import com.styx.Room;
+import com.styx.measurement.Orientation;
+import com.styx.measurement.Preview;
+import com.styx.measurement.Room;
 
 public class DetailActivity extends Activity {
 	String FILENAME = "details";
@@ -45,10 +45,10 @@ public class DetailActivity extends Activity {
 
 
 		setContentView(R.layout.details);
-//		MeasurementPreview measurementPreview = (MeasurementPreview) findViewById(R.id.measurementPreview);
+//		Preview measurementPreview = (Preview) findViewById(R.id.measurementPreview);
 		final DetailView detatilView = ((DetailView) findViewById(R.id.floorPlanView));;
 //		if(measurementPreview!=null){
-		MeasurementPreview measurementPreview = (MeasurementPreview) findViewById(R.id.measuremenPreview);
+		Preview measurementPreview = (Preview) findViewById(R.id.measuremenPreview);
 			Room room = measurementPreview.getRoom();
 			detatilView.addRoom(room);
 //		}else{

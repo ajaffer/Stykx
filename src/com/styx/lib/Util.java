@@ -4,8 +4,8 @@ import java.util.List;
 
 import android.util.Log;
 
-import com.styx.Corner;
-import com.styx.Orientation;
+import com.styx.measurement.Corner;
+import com.styx.measurement.Orientation;
 
 public class Util {
 	public static float[] toArray(List<Float> points) {

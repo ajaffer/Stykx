@@ -7,10 +7,10 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.styx.Corner;
-import com.styx.Orientation;
 import com.styx.lib.Config;
 import com.styx.lib.Util;
+import com.styx.measurement.Corner;
+import com.styx.measurement.Orientation;
 
 public class CompassView extends View {
 	private static Canvas mCanvas;

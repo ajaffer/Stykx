@@ -14,9 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.styx.Orientation;
 import com.styx.R;
 import com.styx.lib.Config;
+import com.styx.measurement.Orientation;
 
 public class CalibrateActivity extends Activity implements SensorEventListener {
 	private float[] geomagnetic, gravity;
