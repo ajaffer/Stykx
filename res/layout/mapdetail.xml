@@ -7,10 +7,10 @@
 	  android:layout_width="fill_parent"
 	  android:layout_height="fill_parent"
 	  android:text="Yay!!"/>
-	<com.styx.MeasurementPreview
+	<com.styx.measurement.Preview
 		    android:id="@+id/mapDetail"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center">
-	</com.styx.MeasurementPreview>
+	</com.styx.measurement.Preview>
 </FrameLayout>

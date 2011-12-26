@@ -51,16 +51,18 @@
             android:layout_below="@+id/compassDirection" >
         </com.styx.widgets.CompassView>
 
-        <com.styx.MeasurementPreview
+        <com.styx.measurement.Preview
             android:id="@+id/measuremenPreview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true" >
-        </com.styx.MeasurementPreview>
+        </com.styx.measurement.Preview>
 
         <TextView
             android:id="@+id/corners"
             android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_above="@+id/markCorner"
             android:text=" corner(s) selected."
